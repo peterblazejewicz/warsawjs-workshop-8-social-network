@@ -17,10 +17,10 @@ const db = function () {
 const app = new compositor.CompositionManager();
 app
     .runModules(modules)
-    .done(({repository}) => {
+    .done(async ({repository}) => {
         const User = require('./app/Entities/User');
         const guid = uuid();
-        repository.invoke(
+        await repository.invoke(
             User,
             guid,
             async (user) => {
@@ -32,12 +32,11 @@ app
                 console.log(`is registered %s`, user.registered);
             }
         );
-        repository.invoke(
+        await repository.invoke(
             User,
             guid,
             async (user) => {
                 console.log(`is registered %s`, user.registered);
-                console.log('user: %j', user);
             }
         );
     }
