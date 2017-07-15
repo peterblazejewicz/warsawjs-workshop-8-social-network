@@ -4,7 +4,7 @@
   "description": "Warshaw JS warsawjs-workshop-8-social-network",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/user.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network/issues"
   },
-  "homepage": "https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network#readme"
+  "homepage": "https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network#readme",
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2"
+  }
 }
