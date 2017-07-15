@@ -9,6 +9,7 @@ const modules = [
     require('./app/Modules/streamer'), 
     require('./app/Modules/subscriber'), 
     require('./app/Modules/publisher'),
+    require('./app/Modules/config'),
     require('./app/Modules/firebase'),
     require('./app/Modules/firebaseBuilder')
 ]

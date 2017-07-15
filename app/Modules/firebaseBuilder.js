@@ -4,7 +4,8 @@ const eventHandlers = {
         return Promise.all([
             db.ref(`/profiles/${commit.sequenceID}`).update({
                 ID: commit.sequenceID,
-                displayName: event.eventPayload.displayName,
+                email: event.eventPayload.email,
+                name: event.eventPayload.name,
                 posts: []
             })]);
         },
