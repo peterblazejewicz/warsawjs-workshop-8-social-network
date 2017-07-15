@@ -1,6 +1,7 @@
 // user
 const User = require('../app/Entities/User.js');
 const assert = require('assert');
+
 describe('User', () => {
     describe('#constructor', () => {
         it('registered returns false for new user', () => {
@@ -9,15 +10,25 @@ describe('User', () => {
             assert.equal(user.email, null);
             assert.equal(user.name, null);
         });
-    });
-    describe('methods', () => {
 
-
-        it('register changes user registered status', () => {
+        it('registetered returns true for duplicate calls', async () => {
             const user = new User();
-            user.register({
+            await user.register({
                 name: 'Piotr',
-                email: 'piotr@example.com'
+                email: 'piotr@example.com',
+                password: '#Password$'
+            });
+            assert.equal(user.getStagedEvents().length, 1);
+        })
+    });
+
+    describe('methods', () => {
+        it('register changes user registered status', async () => {
+            const user = new User();
+            await user.register({
+                name: 'Piotr',
+                email: 'piotr@example.com',
+                password: '#Password$'
             });
             assert.equal(user.registered, true);
             assert.equal(user.name, 'Piotr');
