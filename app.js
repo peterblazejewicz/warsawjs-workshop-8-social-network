@@ -1,3 +1,4 @@
+const config = require('dotenv').config()
 const compositor = require('app-compositor');
 const uuid = require('uuid');
 const firebase = require('firebase');

@@ -13,6 +13,10 @@ module.exports = function() {
           };
           const app = firebase.initializeApp(firebaseConfig);
           const db = app.database();
-          return db;
+          return firebase.auth()
+            .signInWithEmailAndPassword(config.firebase.email, config.firebase.password)
+            .then(() => {
+                return db;
+            });
     })
 }
