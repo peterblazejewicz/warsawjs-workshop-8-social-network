@@ -4,7 +4,8 @@
   "description": "Warshaw JS warsawjs-workshop-8-social-network",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/user.js"
+    "test": "mocha test/user.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,10 @@
   "devDependencies": {
     "chai": "^4.1.0",
     "mocha": "^3.4.2"
+  },
+  "dependencies": {
+    "app-compositor": "^0.4.0",
+    "bcrypt": "^1.0.2",
+    "esdf": "^0.2.1"
   }
 }
