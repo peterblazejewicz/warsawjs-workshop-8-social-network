@@ -1,10 +1,16 @@
 const compositor = require('app-compositor');
 const uuid = require('uuid');
-
+const firebase = require('firebase');
 const modules = [
-    require('./app/Modules/sink'),
-    require('./app/Modules/streamer'),
-    require('./app/Modules/repository'),
+    require('./app/Modules/sink'), 
+    require('./app/Modules/streamer'), 
+    require('./app/Modules/repository'), 
+    require('./app/Modules/services' ), 
+    require('./app/Modules/streamer'), 
+    require('./app/Modules/subscriber'), 
+    require('./app/Modules/publisher'),
+    require('./app/Modules/firebase'),
+    require('./app/Modules/firebaseBuilder')
 ]
 
 const db = function () {
@@ -17,28 +23,12 @@ const db = function () {
 const app = new compositor.CompositionManager();
 app
     .runModules(modules)
-    .done(async ({repository}) => {
-        const User = require('./app/Entities/User');
+    .done(async({streamer, subscriber, services}) => {
+        streamer.start();
+        subscriber.queue('eventLogger').bind('*.*').listen(({event, commit}) => {
+            console.log('* %s %s %j', commit.aggregateType, event.eventType, event.eventPayload);
+        });
         const guid = uuid();
-        await repository.invoke(
-            User,
-            guid,
-            async (user) => {
-                await user.register({
-                    name: 'Piotr',
-                    email: 'piotr@example.com',
-                    password: 'pass4'
-                });
-                console.log(`is registered %s`, user.registered);
-            }
-        );
-        await repository.invoke(
-            User,
-            guid,
-            async (user) => {
-                console.log(`is registered %s`, user.registered);
-            }
-        );
-    }
-
-    );
+        const registerUser = services.service('registerUser');
+        await registerUser({userID: guid, name: 'Piotr', email: 'piotr@example.com', password: 'pass4'});
+    });
