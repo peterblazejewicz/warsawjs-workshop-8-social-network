@@ -1,0 +1,20 @@
+{
+  "name": "warsawjs-workshop-8-social-network",
+  "version": "1.0.0",
+  "description": "Warshaw JS warsawjs-workshop-8-social-network",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network/issues"
+  },
+  "homepage": "https://github.com/peterblazejewicz/warsawjs-workshop-8-social-network#readme"
+}
